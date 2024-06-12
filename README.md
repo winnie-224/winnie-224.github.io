@@ -33,4 +33,42 @@
       public decimal Price { get; set; }
     }
   ```
- 
+
+### Creating a Controller
+
+  Controllers handle incoming requests to the API and define the logic for processing them. You can create methods within the controller class to handle different HTTP verbs (GET, POST, PUT, DELETE) for specific API endpoints.
+  ```
+    public class ProductsController : ApiController
+    {
+      private List<Product> products = new List<Product>()
+      {
+          new Product { Id = 1, Name = "Product 1", Price = 10.00m },
+          new Product { Id = 2, Name = "Product 2", Price = 20.00m }
+      };
+
+      // GET: api/Products
+      public IEnumerable<Product> GetProducts()
+      {
+          return products;
+      }
+      // GET: api/Products/5
+      public Product GetProduct(int id)
+      {
+          var product = products.FirstOrDefault(p => p.Id == id);
+          if (product == null)
+          {
+              return null;
+          }
+          return product;
+      }
+  }
+
+  ```
+  In this example, the `ProductsController` defines two methods:
+  ```
+  `GetProducts`: This method returns a list of all products using the `GET` verb on the `/api/Products` endpoint.
+  
+  
+  `GetProduct`: This method takes an ID as input and returns a specific product using the `GET` verb on the `/api/Products/{id}` endpoint (where `{id}` is replaced with the actual ID).
+  ```
+
