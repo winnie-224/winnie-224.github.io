@@ -30,8 +30,6 @@
       public string Name { get; set; }
       public decimal Price { get; set; }
     }
-
-
  ### Creating a Controller
    Controllers handle incoming requests to the API and define the logic for processing them. You can create methods within the controller class to handle different HTTP verbs (GET, POST, PUT, DELETE) for specific API endpoints. 
   
