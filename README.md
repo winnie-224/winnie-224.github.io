@@ -16,6 +16,9 @@
     Give your project a name and click "Create".
 
 ### Creating a Model
+
+
+
   A model represents the data your API will handle. It defines the structure of your data objects. For example, if your API manages a list of products, you could create a `Product` model class with properties like `Id`, `Name`, `Price`, etc.
     
     public class Product
@@ -24,8 +27,12 @@
       public string Name { get; set; }
       public decimal Price { get; set; }
     }
-    
+
+
  ### Creating a Controller
+
+
+ 
    Controllers handle incoming requests to the API and define the logic for processing them. You can create methods within the controller class to handle different HTTP verbs (GET, POST, PUT, DELETE) for specific API endpoints. 
   
     public class ProductsController : ApiController
@@ -62,5 +69,6 @@
   `GetProduct`: This method takes an ID as input and returns a specific product using the `GET` verb on the `/api/Products/{id}` endpoint (where `{id}` is replaced with the actual ID).
 
  ### Running the API
-  Once you've defined your models and controllers, you can run the application. Press F5 in your code editor to launch the development server.
-  You can then access your API endpoints using tools like Postman or by directly making requests in your web browser (e.g., `http://localhost:5000/api/Products`).
+ 
+ 
+ Once you've defined your models and controllers, you can run the application. Press F5 in your code editor to launch the development server. You can then access your API endpoints using tools like Postman or by directly making requests in your web browser (e.g., `http://localhost:5000/api/Products`).
