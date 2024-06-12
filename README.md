@@ -72,3 +72,5 @@
   `GetProduct`: This method takes an ID as input and returns a specific product using the `GET` verb on the `/api/Products/{id}` endpoint (where `{id}` is replaced with the actual ID).
   ```
 
+### Running the API
+  Once you've defined your models and controllers, you can run the application. Press F5 in your code editor to launch the development server. You can then access your API endpoints using tools like Postman or by directly making requests in your web browser (e.g., `http://localhost:5000/api/Products`).
