@@ -23,16 +23,17 @@
 ### Creating a Model
 
   A model represents the data your API will handle. It defines the structure of your data objects. For example, if your API manages a list of products, you could create a `Product` model class with properties like `Id`, `Name`, `Price`, etc.
-    
+  ```  
     public class Product
     {
       public int Id { get; set; }
       public string Name { get; set; }
       public decimal Price { get; set; }
     }
+  ```
  ### Creating a Controller
    Controllers handle incoming requests to the API and define the logic for processing them. You can create methods within the controller class to handle different HTTP verbs (GET, POST, PUT, DELETE) for specific API endpoints. 
-  
+  ```
     public class ProductsController : ApiController
     {
       private List<Product> products = new List<Product>()
@@ -58,7 +59,7 @@
           return product;
       }
   }
-
+  ```
   In this example, the `ProductsController` defines two methods:
   
   `GetProducts`: This method returns a list of all products using the `GET` verb on the `/api/Products` endpoint.
