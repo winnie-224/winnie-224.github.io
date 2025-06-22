@@ -96,48 +96,43 @@
   </footer>
 
   <script>
-    const username = 'winnie-224'; // Replace with your GitHub username
+    const username = 'winnie-224';
     const repoListDiv = document.getElementById('repo-list');
+
+    async function getRepositories() {
+      const res = await fetch(`https://api.github.com/users/${username}/repos`);
+      return await res.json();
+    }
+
+    async function getReadme(repoName) {
+      const res = await fetch(`https://api.github.com/repos/${username}/${repoName}/readme`);
+      const data = await res.json();
+      if (!data.content) return '';
+      return atob(data.content.replace(/\n/g, ''));
+    }
 
     function extractTechnologySection(readme) {
       const match = readme.match(/##\s*Technology\s*([\s\S]*?)(?:\n##|\n#|$)/i);
       return match ? match[1].trim() : null;
     }
 
-    function fetchRepositories() {
-      return fetch(`https://api.github.com/users/${username}/repos`)
-        .then(response => response.json());
-    }
+    async function displayTechnologies() {
+      const repos = await getRepositories();
+      repoListDiv.innerHTML = '';
 
-    function fetchReadme(repoName) {
-      return fetch(`https://api.github.com/repos/${username}/${repoName}/readme`)
-        .then(response => response.json())
-        .then(data => {
-          if (!data.content) return '';
-          return atob(data.content.replace(/\n/g, ''));
-        })
-        .catch(() => ''); // In case README is missing or private
-    }
+      for (const repo of repos) {
+        if (repo.fork) continue;
+        const readme = await getReadme(repo.name);
+        const tech = extractTechnologySection(readme);
 
-    function displayTechnologies() {
-      fetchRepositories()
-        .then(repos => {
-          repoListDiv.innerHTML = '';
-          repos.forEach(repo => {
-
-            fetchReadme(repo.name)
-              .then(readme => {
-                const tech = extractTechnologySection(readme);
-                const card = document.createElement('div');
-                card.className = 'card';
-                card.innerHTML = `
-                  <h2><a href="${repo.html_url}" target="_blank" style="text-decoration: none; color: inherit;">${repo.name}</a></h2>
-                  <p>${tech ? tech.replace(/\n/g, '<br>') : '<em>No technology section found.</em>'}</p>
-                `;
-                repoListDiv.appendChild(card);
-              });
-          });
-        });
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <h2><a href="${repo.html_url}" target="_blank" style="text-decoration: none; color: inherit;">${repo.name}</a></h2>
+          <p>${tech ? tech.replace(/\n/g, '<br>') : '<em>No technology section found.</em>'}</p>
+        `;
+        repoListDiv.appendChild(card);
+      }
     }
 
     displayTechnologies();
