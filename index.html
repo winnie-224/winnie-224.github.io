@@ -121,7 +121,7 @@
       repoListDiv.innerHTML = '';
 
       for (const repo of repos) {
-        if (repo.fork) continue;
+        // if (repo.fork) continue;
         const readme = await getReadme(repo.name);
         const tech = extractTechnologySection(readme);
 
