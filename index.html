@@ -124,7 +124,6 @@
         .then(repos => {
           repoListDiv.innerHTML = '';
           repos.forEach(repo => {
-            if (repo.fork) return; // Skip forked repos
 
             fetchReadme(repo.name)
               .then(readme => {
