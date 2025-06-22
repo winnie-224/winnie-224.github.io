@@ -52,3 +52,8 @@
 </a>
 </p>
 </p>
+## Technology
+- HTML
+- CSS
+- JavaScript
+- GitHub API
