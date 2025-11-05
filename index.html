@@ -1,142 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Vineeta Anand | GitHub Portfolio</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    :root {
-      --primary: #0366d6;
-      --bg: #f4f4f4;
-      --card-bg: #fff;
-      --text: #333;
-      --accent: #e1e4e8;
-    }
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/uikit.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/uikit.js"></script>
+    <script src="js/uikit-icons.js"></script>
 
-    body {
-      margin: 0;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      background-color: var(--bg);
-      color: var(--text);
-    }
-
-    header {
-      background-color: var(--primary);
-      color: white;
-      padding: 2rem 1rem;
-      text-align: center;
-    }
-
-    header h1 {
-      margin: 0 0 10px;
-    }
-
-    header p {
-      margin: 0;
-      font-weight: 300;
-    }
-
-    .container {
-      max-width: 1000px;
-      margin: auto;
-      padding: 2rem 1rem;
-    }
-
-    .grid {
-      display: grid;
-      gap: 1.5rem;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    }
-
-    .card {
-      background-color: var(--card-bg);
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      padding: 1.5rem;
-      transition: transform 0.2s;
-      border: 1px solid var(--accent);
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-    }
-
-    .card h2 {
-      font-size: 1.2rem;
-      margin: 0 0 0.5rem;
-      color: var(--primary);
-    }
-
-    .card p {
-      margin: 0.5rem 0 0;
-      font-size: 0.9rem;
-      line-height: 1.5;
-    }
-
-    footer {
-      text-align: center;
-      padding: 2rem 1rem;
-      color: #666;
-      font-size: 0.8rem;
-    }
-  </style>
+    <title>Portfolio</title>
 </head>
+<script>
+  const username = 'winnie-224';
+  const repoListDiv = document.getElementById('repo-list');
+
+  async function getRepositories() {
+    const res = await fetch(`https://api.github.com/users/${username}/repos`);
+    return await res.json();
+  }
+
+  async function getReadme(repoName) {
+    const res = await fetch(`https://api.github.com/repos/${username}/${repoName}/readme`);
+    const data = await res.json();
+    if (!data.content) return '';
+    return atob(data.content.replace(/\n/g, ''));
+  }
+
+  function extractTechnologySection(readme) {
+    // Looks for ## Technology ... until next ##
+    const match = readme.match(/##\s*Technology\s*([\s\S]*?)(?:\n##|\n#|$)/i);
+    return match ? match[1].trim() : null;
+  }
+
+  // You can also extract a short description from the README/title
+  function extractDescription(readme) {
+    const match = readme.match(/##\s*Description\s*([\s\S]*?)(?:\n##|\n#|$)/i);
+    if (match) return match[1].trim();
+    // fallback: project description from the GitHub repo object
+    return '';
+  }
+
+  async function displayProjects() {
+    repoListDiv.innerHTML = '<div>Loading projects...</div>';
+    const repos = await getRepositories();
+    repoListDiv.innerHTML = '';
+    for (const repo of repos) {
+      if (repo.fork) continue;
+      const readme = await getReadme(repo.name);
+      const tech = extractTechnologySection(readme) || '';
+      const desc = extractDescription(readme) || repo.description || '<em>No description found.</em>';
+
+      const card = document.createElement('div');
+      card.className = 'uk-card uk-card-secondary uk-card-body uk-margin';
+      card.innerHTML = `
+        <h4><a href="${repo.html_url}" target="_blank" style="color: inherit; text-decoration: none;">${repo.name}</a></h4>
+        <p>${desc.replace(/\n/g, '<br>')}</p>
+        <p><strong>Tech:</strong> ${tech ? tech.replace(/\n/g, '<br>') : '<em>No technology section found.</em>'}</p>
+        <a class="uk-button-text uk-text-decoration-none" href="${repo.html_url}" target="_blank"><span uk-icon="icon: link"></span> GitHub Repo</a>
+      `;
+      repoListDiv.appendChild(card);
+    }
+  }
+
+  displayProjects();
+</script>
+
 <body>
-  <header>
-    <h1>Vineeta Anand</h1>
-    <p>GitHub Portfolio | Technologies Used in My Projects</p>
-  </header>
+<!-- Navigation Bar -->
+    <nav class="uk-navbar-container uk-margin-small-left uk-margin-small-right uk-visible@m uk-margin-xlarge-left uk-margin-xlarge-right" uk-navbar uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky">
+    
+    <div class="uk-navbar-left">
+        <a href="" class="uk-navbar-item uk-logo uk-light">Vineeta</a>
+    </div>
+    <div class="uk-navbar-right">
 
-  <main class="container">
-    <div id="repo-list" class="grid">Loading projects...</div>
-  </main>
+        <ul class="uk-navbar-nav uk-light">
+            <li><a class="uk-button-text uk-text-capitalize" href="#about" uk-scroll>About</a></li>
+            <li><a class="uk-button-text uk-text-capitalize" href="#projects" uk-scroll>Projects</a></li>
+            <li><a class="uk-button-text uk-text-capitalize" href="mailto:" uk-scroll>Contact</a></li>
 
-  <footer>
-    &copy; 2025 Vineeta Anand | Built using GitHub API + JavaScript
-     <br /><br/><img src="https://komarev.com/ghpvc/?username=winnie-224&label=Profile%20views&color=0e75b6&style=flat" alt="winnie-224" />
-  </footer>
+        </ul>
 
-  <script>
-    const username = 'winnie-224';
-    const repoListDiv = document.getElementById('repo-list');
+    </div>
+</nav>
+<!-- Navigation Bar Ends  -->
 
-    async function getRepositories() {
-      const res = await fetch(`https://api.github.com/users/${username}/repos`);
-      return await res.json();
-    }
+<!-- Navigation Bar Mobile -->
+<nav class="uk-navbar-container uk-margin-small-left uk-margin-small-right uk-hidden@m uk-margin-xlarge-left uk-margin-xlarge-right" uk-navbar uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky">
+    
+    <div class="uk-navbar-left">
+        <a href="" class="uk-navbar-item uk-logo uk-light">JohnDoe.</a>
+    </div>
+    <div class="uk-navbar-right">
 
-    async function getReadme(repoName) {
-      const res = await fetch(`https://api.github.com/repos/${username}/${repoName}/readme`);
-      const data = await res.json();
-      if (!data.content) return '';
-      return atob(data.content.replace(/\n/g, ''));
-    }
+        <ul class="uk-navbar-nav uk-light">
+            <li><button uk-toggle="target: #offcanvas-nav" type="button" uk-navbar-toggle-icon></button></li>
 
-    function extractTechnologySection(readme) {
-      const match = readme.match(/##\s*Technology\s*([\s\S]*?)(?:\n##|\n#|$)/i);
-      return match ? match[1].trim() : null;
-    }
+        </ul>
 
-    async function displayTechnologies() {
-      const repos = await getRepositories();
-      repoListDiv.innerHTML = '';
+    </div>
+</nav>
+<!-- Change This -->
+<div id="offcanvas-nav" uk-offcanvas="overlay: true">
+    <div class="uk-offcanvas-bar uk-flex uk-flex-column">
 
-      for (const repo of repos) {
-        if (repo.fork) continue;
-        const readme = await getReadme(repo.name);
-        const tech = extractTechnologySection(readme);
+        <ul class="uk-nav uk-nav-primary uk-nav-center uk-margin-auto-vertical">
+            <li class="uk-active"><a href="#" uk-scroll>Home</a></li>
+            <li class="uk-active"><a href="#about" uk-scroll>About</a></li>
+            <li class="uk-active"><a href="#projects" uk-scroll>Projects</a></li>
+            <li class="uk-active"><a href="mailto:">Contact</a></li> <!--- change to ur email-->
 
-        const card = document.createElement('div');
-        card.className = 'card';
-        card.innerHTML = `
-          <h2><a href="${repo.html_url}" target="_blank" style="text-decoration: none; color: inherit;">${repo.name}</a></h2>
-          <p>${tech ? tech.replace(/\n/g, '<br>') : '<em>No technology section found.</em>'}</p>
-        `;
-        repoListDiv.appendChild(card);
-      }
-    }
+        </ul>
 
-    displayTechnologies();
-  </script>
+
+
+
+    </div>
+</div>
+
+<!-- Navigation Bar Mobile Ends -->
+<!-- Home -->
+<section class="uk-margin-small-left uk-margin-small-right uk-margin-xlarge-top uk-margin-xlarge-bottom">
+    <h1 class="uk-margin-xlarge-left uk-light uk-text-left uk-margin-xlarge-right">I'm John Doe, a front-end web developer, <br>graphic designer, and an UI/UX designer.</h1>
+    <a href="#about" class="uk-margin-xlarge-left uk-text-capitalize uk-button uk-button-secondary" uk-scroll>About Me</a>
+
+
+</section>
+
+<!-- Home Ends -->
+<br>
+
+
+<hr class="uk-margin-xlarge-top uk-margin-xlarge-left uk-margin-xlarge-right">
+
+<!-- About Me -->
+<section id="about" class="uk-margin-small-left uk-margin-small-right uk-margin-xlarge-top uk-margin-xlarge-bottom">
+<h3 class="uk-margin-xlarge-left uk-light">About Me</h3>
+<!-- Change here to ur paragraph -->
+<p class="uk-margin-xlarge-left uk-margin-xlarge-right">Hi, I’m Vineeta Anand. I’m a passionate developer with interests spanning web development, data science, and creative technology. I enjoy solving real-world problems, exploring new frameworks, and building both practical and playful projects. My portfolio demonstrates a blend of solid technical skills and curiosity-driven learning.</p>
+<a href="" class="uk-margin-xlarge-left uk-light uk-button-text" uk-icon="instagram"></a> &nbsp;<a href="" class="uk-light uk-button-text" uk-icon="dribbble"></a> &nbsp;<a href="" class="uk-button-text uk-light" uk-icon="github"></a> &nbsp;<a href="" class=" uk-light uk-button-text" uk-icon="linkedin"></a>
+
+<!-- About Me Ends -->
+
+
+
+
+</section>
+
+<!-- Projects Section -->
+<hr class="uk-margin-xlarge-left uk-margin-xlarge-right">
+<section id="projects" class="uk-margin-small-left uk-margin-small-right uk-margin-xlarge-top uk-margin-xlarge-bottom">
+<h3 class="uk-margin-xlarge-left uk-light">Projects</h3>
+<p class="uk-margin-xlarge-left">Projects that i've been working on</p>
+<div id="repo-list" class="uk-grid uk-child-width-1-2@s uk-grid-match"></div>
+  <br>
+
+
+
+    <br>
+
+
+</section>
+<hr class="uk-margin-xlarge-left uk-margin-xlarge-right">
+</div>
+<!-- Projects Section Ends -->
+    
 </body>
 </html>
