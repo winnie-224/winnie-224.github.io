@@ -45,11 +45,11 @@
 <p><img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=winnie-224&" alt="winnie-224" /></p>
 <p><img src="https://github-readme-stats.vercel.app/api/top-langs?username=winnie-224&show_icons=true&locale=en&layout=compact" alt="winnie-224" /></p>
 <p><a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=winnie-224" alt="winnie-224" /></a></p>
-<h2>❤️ Support Me</h2>
+<!-- <h2>❤️ Support Me</h2>
 <p><p>
 <a href="https://coff.ee/winnie_224">
 <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" width="160" alt="buymeacoffee" />
-</a>
+</a> -->
 </p>
 </p>
 ## Technology
