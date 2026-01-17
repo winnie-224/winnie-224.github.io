@@ -1,142 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Vineeta Anand | GitHub Portfolio</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    :root {
-      --primary: #0366d6;
-      --bg: #f4f4f4;
-      --card-bg: #fff;
-      --text: #333;
-      --accent: #e1e4e8;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vineeta Anand | GitHub Portfolio</title>
 
-    body {
-      margin: 0;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      background-color: var(--bg);
-      color: var(--text);
-    }
+<style>
+body{
+    margin:0;
+    font-family: "Segoe UI", sans-serif;
+    background:#f5f7fb;
+    color:#222;
+}
 
-    header {
-      background-color: var(--primary);
-      color: white;
-      padding: 2rem 1rem;
-      text-align: center;
-    }
+header{
+    background:white;
+    padding:40px 20px;
+    text-align:center;
+    box-shadow:0 2px 10px rgba(0,0,0,0.05);
+}
 
-    header h1 {
-      margin: 0 0 10px;
-    }
+.profile-pic{
+    width:140px;
+    height:140px;
+    border-radius:50%;
+    border:4px solid #4a6cf7;
+    object-fit:cover;
+}
 
-    header p {
-      margin: 0;
-      font-weight: 300;
-    }
+.tagline{
+    color:#555;
+    margin-top:6px;
+}
 
-    .container {
-      max-width: 1000px;
-      margin: auto;
-      padding: 2rem 1rem;
-    }
+.buttons a{
+    display:inline-block;
+    margin:10px 8px;
+    padding:10px 18px;
+    border-radius:20px;
+    text-decoration:none;
+    background:#4a6cf7;
+    color:white;
+    font-size:14px;
+}
 
-    .grid {
-      display: grid;
-      gap: 1.5rem;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    }
+.container{
+    max-width:1000px;
+    margin:auto;
+    padding:40px 20px;
+}
 
-    .card {
-      background-color: var(--card-bg);
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      padding: 1.5rem;
-      transition: transform 0.2s;
-      border: 1px solid var(--accent);
-    }
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:25px;
+}
 
-    .card:hover {
-      transform: translateY(-5px);
-    }
+.card{
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.05);
+    position:relative;
+}
 
-    .card h2 {
-      font-size: 1.2rem;
-      margin: 0 0 0.5rem;
-      color: var(--primary);
-    }
+.featured{
+    position:absolute;
+    top:12px;
+    right:-30px;
+    background:#ff4d4d;
+    color:white;
+    padding:5px 40px;
+    transform:rotate(45deg);
+    font-size:12px;
+}
 
-    .card p {
-      margin: 0.5rem 0 0;
-      font-size: 0.9rem;
-      line-height: 1.5;
-    }
+h2{
+    text-align:center;
+    margin-bottom:30px;
+}
 
-    footer {
-      text-align: center;
-      padding: 2rem 1rem;
-      color: #666;
-      font-size: 0.8rem;
-    }
-  </style>
+.about{
+    background:white;
+    margin-top:50px;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.05);
+}
+
+.tech span{
+    display:inline-block;
+    background:#e4e9ff;
+    padding:6px 12px;
+    border-radius:15px;
+    margin:5px;
+    font-size:13px;
+}
+
+footer{
+    text-align:center;
+    padding:30px;
+    font-size:14px;
+    color:#777;
+}
+</style>
 </head>
+
 <body>
-  <header>
+
+<header>
+    <img src="profile.jpg" class="profile-pic" alt="Profile Picture">
     <h1>Vineeta Anand</h1>
-    <p>GitHub Portfolio | Technologies Used in My Projects</p>
-  </header>
+    <!-- <div class="tagline">AI Engineer | Full Stack Developer | Recommender Systems | Accessible FinTech Builder</div> -->
 
-  <main class="container">
-    <div id="repo-list" class="grid">Loading projects...</div>
-  </main>
+    <div class="buttons">
+        <a href="#">Resume</a>
+        <a href="https://www.linkedin.com/in/vineeta-anand">LinkedIn</a>
+        <a href="mailto:youremail@gmail.com">Email</a>
+        <a href="#">Publications</a>
+    </div>
+</header>
 
-  <footer>
-    &copy; 2025 Vineeta Anand | Built using GitHub API + JavaScript
-     <br /><br/>
-  </footer>
+<div class="container">
 
-  <script>
-    const username = 'winnie-224';
-    const repoListDiv = document.getElementById('repo-list');
+<h2>GitHub Portfolio</h2>
 
-    async function getRepositories() {
-      const res = await fetch(`https://api.github.com/users/${username}/repos`);
-      return await res.json();
-    }
+<div class="grid">
 
-    async function getReadme(repoName) {
-      const res = await fetch(`https://api.github.com/repos/${username}/${repoName}/readme`);
-      const data = await res.json();
-      if (!data.content) return '';
-      return atob(data.content.replace(/\n/g, ''));
-    }
+    <div class="card">
+        🖥 <b>Desktop Apps</b>
+        <!-- <p>System Design Implementations, WPF, Scalable UI Projects</p> -->
+    </div>
 
-    function extractTechnologySection(readme) {
-      const match = readme.match(/##\s*Description\s*([\s\S]*?)(?:\n##|\n#|$)/i);
-      return match ? match[1].trim() : null;
-    }
+    <div class="card">
+        <div class="featured">FEATURED</div>
+        📱 <b>Mobile Apps</b>
+        <!-- <p>BolSaathi – Voice Banking for Elders, Android Projects</p> -->
+    </div>
 
-    async function displayTechnologies() {
-      const repos = await getRepositories();
-      repoListDiv.innerHTML = '';
+    <div class="card">
+        <div class="featured">FEATURED</div>
+        🤖 <b>AI / ML Projects</b>
+        <!-- <p>ShadowRec Recommender, LLM Note Assistant, ML Pipelines</p> -->
+    </div>
 
-      for (const repo of repos) {
-        if (repo.fork) continue;
-        const readme = await getReadme(repo.name);
-        const tech = extractTechnologySection(readme);
+    <div class="card">
+        🌐 <b>Django Projects</b>
+        <!-- <p>REST APIs, Authentication Systems, Backend Services</p> -->
+    </div>
 
-        const card = document.createElement('div');
-        card.className = 'card';
-        card.innerHTML = `
-          <h2><a href="${repo.html_url}" target="_blank" style="text-decoration: none; color: inherit;">${repo.name}</a></h2>
-          <p>${tech ? tech.replace(/\n/g, '<br>') : '<em>No description section found.</em>'}</p>
-        `;
-        repoListDiv.appendChild(card);
-      }
-    }
+</div>
 
-    displayTechnologies();
-  </script>
+<!-- <div class="about">
+<h3>About Me</h3>
+<p>
+AI Engineer with 2+ years of software engineering experience. Research-focused in recommender systems (GNN + ShadowRec) and passionate about building accessible fintech products like BolSaathi for elders. Strong in backend systems, ML, and scalable application design.
+</p> -->
+
+<h3>Tech Stack</h3>
+<div class="tech">
+<span>C++</span><span>C#</span><span>Python</span><span>Django</span><span>FastAPI</span><span>Recommender Systems</span>
+<span>LLMs</span><span>AWS</span><span>Docker</span><span>Android</span><span>WPF</span><span>Git</span>
+</div>
+</div>
+
+</div>
+
+<footer>
+    <!-- ⭐ GitHub Stats & Visitor Counter can be added here   -->
+</footer>
+
 </body>
 </html>
