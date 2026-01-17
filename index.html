@@ -8,13 +8,13 @@
 <style>
 body{
     margin:0;
-    font-family: "Segoe UI", sans-serif;
-    background:#f5f7fb;
-    color:#222;
+    font-family:"Segoe UI",sans-serif;
+    background:#dae5f6;
+    color:#341f27;
 }
 
 header{
-    background:white;
+    background:#efd9c3;
     padding:40px 20px;
     text-align:center;
     box-shadow:0 2px 10px rgba(0,0,0,0.05);
@@ -24,7 +24,7 @@ header{
     width:140px;
     height:140px;
     border-radius:50%;
-    border:4px solid #4a6cf7;
+    border:4px solid #ef9a80;
     object-fit:cover;
 }
 
@@ -34,9 +34,13 @@ header{
     padding:10px 18px;
     border-radius:20px;
     text-decoration:none;
-    background:#4a6cf7;
+    background:#5f4249;
     color:white;
     font-size:14px;
+}
+
+.buttons a:hover{
+    background:#341f27;
 }
 
 .container{
@@ -51,22 +55,24 @@ header{
 }
 
 .tabs button{
-    background:#4a6cf7;
-    color:white;
+    background:#ef9a80;
+    color:#341f27;
     border:none;
     padding:10px 18px;
     border-radius:20px;
     margin:6px;
     cursor:pointer;
     font-size:14px;
+    font-weight:600;
 }
 
 .tabs button:hover{
-    background:#354edb;
+    background:#9f5647;
+    color:white;
 }
 
 .project-section ul{
-    background:white;
+    background:#efd9c3;
     padding:20px 30px;
     border-radius:12px;
     box-shadow:0 4px 15px rgba(0,0,0,0.05);
@@ -79,13 +85,18 @@ header{
 
 .project-section a{
     text-decoration:none;
-    color:#4a6cf7;
-    font-weight:500;
+    color:#5f4249;
+    font-weight:600;
+}
+
+.project-section a:hover{
+    color:#9f5647;
 }
 
 .tech span{
     display:inline-block;
-    background:#e4e9ff;
+    background:#a1a6af;
+    color:white;
     padding:6px 12px;
     border-radius:15px;
     margin:5px;
@@ -96,7 +107,7 @@ footer{
     text-align:center;
     padding:30px;
     font-size:14px;
-    color:#777;
+    color:#5f4249;
 }
 </style>
 </head>
@@ -104,13 +115,14 @@ footer{
 <body>
 
 <header>
-    <img src="ChatGPT Image Jan 17, 2026, 05_19_58 PM.png" class="profile-pic" alt="Profile Picture">
+    <img src="ChatGPT Image Jan 17, 2026, 05_19_58 PM.png" class="profile-pic">
     <h1>Vineeta Anand</h1>
 
     <div class="buttons">
-        <a href="Vineeta_Anand_AI_Engineer_Resume.pdf" target="_blank">Resume</a>
+        <a href="Resume_30_12_2025.pdf" target="_blank">Resume</a>
         <a href="https://www.linkedin.com/in/vineeta-anand">LinkedIn</a>
         <a href="mailto:anandvineeta92@gmail.com">Email</a>
+        <!-- <a href="#">Publications</a> -->
     </div>
 </header>
 
@@ -126,52 +138,57 @@ footer{
 </div>
 
 <div id="desktop" class="project-section">
-    <ul>
-        <li><a href="#">System Optimizer Tool</a></li>
-        <li><a href="#">WPF Billing Application</a></li>
-    </ul>
+<ul>
+<!-- <li><a href="#">System Optimizer Tool</a></li> -->
+<!-- <li><a href="#">WPF Billing Application</a></li> -->
+    <li><a href="https://github.com/winnie-224/DesktopAssistant">Desktop Assistant (WPF)</a></li>
+    <li><a href="https://github.com/winnie-224/RateLimiterSimulator">API Gateway Rate Limiter Simulator (WPF)</a></li>
+    <li><a href="https://github.com/winnie-224/UrlShortenerWpf">URL Shortener – System Design Simulator (WPF)</a></li>
+</ul>
 </div>
 
 <div id="mobile" class="project-section" style="display:none;">
-    <ul>
-        <li><a href="#">BolSaathi – Voice Banking Assistant</a></li>
-        <li><a href="#">Expense Tracker App</a></li>
-    </ul>
+<ul>
+<!-- <li><a href="#">BolSaathi – Voice Banking Assistant</a></li> -->
+<!-- <li><a href="#">Expense Tracker App</a></li> -->
+    <li><a href="https://github.com/winnie-224/rent-receipt-generator-android">Rent Receipt Generator</a></li>
+    <li><a href="https://github.com/winnie-224/mpdf-scanner">mPDF Scanner</a></li>
+    <li><a href="https://github.com/winnie-224/unity-games">Unity Games</a></li>
+</ul>
 </div>
 
 <div id="ai" class="project-section" style="display:none;">
-    <ul>
-        <li><a href="#">ShadowRec – Diversity-aware Recommender</a></li>
-        <li><a href="#">LLM Note Assistant</a></li>
-        <li><a href="#">ML Pipeline – Store Sales Forecast</a></li>
-    </ul>
+<ul>
+<li><a href="https://github.com/winnie-224/shadowrec-recommender">ShadowRec Recommender</a></li>
+<li><a href="https://github.com/winnie-224/NoteMaker">LLM Note Assistant</a></li>
+<li><a href="https://github.com/winnie-224/academic_web_crawler_flask">Academic Research Web Crawler</a></li>
+</ul>
 </div>
 
 <div id="django" class="project-section" style="display:none;">
-    <ul>
-        <li><a href="#">Django Authentication System</a></li>
-        <li><a href="#">REST API Backend</a></li>
-    </ul>
+<ul>
+<!-- <li><a href="#">Django Authentication System</a></li> -->
+<!-- <li><a href="#">REST API Backend</a></li> -->
+</ul>
 </div>
 
 <h3 style="margin-top:40px;">Tech Stack</h3>
 <div class="tech">
 <span>C++</span><span>C#</span><span>Python</span><span>Django</span><span>FastAPI</span>
-<span>Recommender Systems</span><span>LLMs</span><span>AWS</span>
-<span>Docker</span><span>Android</span><span>WPF</span><span>Git</span>
+<span>LLMs</span><span>AWS</span><span>Docker</span><span>Android</span><span>Git</span>
 </div>
 
 </div>
 
 <footer>
-⭐ GitHub Project Portfolio — @winnie-224
+Portfolio styled using colors from Vineeta's dev avatar 🎨
 </footer>
 
 <script>
-function showProjects(category) {
+function showProjects(category){
     const sections = document.querySelectorAll(".project-section");
-    sections.forEach(section => section.style.display = "none");
-    document.getElementById(category).style.display = "block";
+    sections.forEach(sec => sec.style.display="none");
+    document.getElementById(category).style.display="block";
 }
 </script>
 
