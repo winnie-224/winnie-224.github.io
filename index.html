@@ -28,11 +28,6 @@ header{
     object-fit:cover;
 }
 
-.tagline{
-    color:#555;
-    margin-top:6px;
-}
-
 .buttons a{
     display:inline-block;
     margin:10px 8px;
@@ -50,42 +45,42 @@ header{
     padding:40px 20px;
 }
 
-.grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:25px;
-}
-
-.card{
-    background:white;
-    padding:25px;
-    border-radius:12px;
-    box-shadow:0 4px 15px rgba(0,0,0,0.05);
-    position:relative;
-}
-
-.featured{
-    position:absolute;
-    top:12px;
-    right:-30px;
-    background:#ff4d4d;
-    color:white;
-    padding:5px 40px;
-    transform:rotate(45deg);
-    font-size:12px;
-}
-
-h2{
+.tabs{
     text-align:center;
-    margin-bottom:30px;
+    margin:30px 0;
 }
 
-.about{
+.tabs button{
+    background:#4a6cf7;
+    color:white;
+    border:none;
+    padding:10px 18px;
+    border-radius:20px;
+    margin:6px;
+    cursor:pointer;
+    font-size:14px;
+}
+
+.tabs button:hover{
+    background:#354edb;
+}
+
+.project-section ul{
     background:white;
-    margin-top:50px;
-    padding:25px;
+    padding:20px 30px;
     border-radius:12px;
     box-shadow:0 4px 15px rgba(0,0,0,0.05);
+    list-style:none;
+}
+
+.project-section li{
+    margin:12px 0;
+}
+
+.project-section a{
+    text-decoration:none;
+    color:#4a6cf7;
+    font-weight:500;
 }
 
 .tech span{
@@ -109,66 +104,77 @@ footer{
 <body>
 
 <header>
-    <img src="ChatGPT Image Jan 17, 2026, 05_19_58 PM.png" class="profile-pic" alt="Profile Picture">
+    <img src="profile.jpg" class="profile-pic" alt="Profile Picture">
     <h1>Vineeta Anand</h1>
-    <!-- <div class="tagline">AI Engineer | Full Stack Developer | Recommender Systems | Accessible FinTech Builder</div> -->
 
     <div class="buttons">
-        <a href="Resume_30_12_2025.pdf">Resume</a>
+        <a href="Vineeta_Anand_AI_Engineer_Resume.pdf" target="_blank">Resume</a>
         <a href="https://www.linkedin.com/in/vineeta-anand">LinkedIn</a>
-        <a href="mailto:anandvineeta92@gmail.com">Email</a>
-        <!-- <a href="#">Publications</a> -->
+        <a href="mailto:youremail@gmail.com">Email</a>
+        <a href="#">Publications</a>
     </div>
 </header>
 
 <div class="container">
 
-<h2>GitHub Portfolio</h2>
+<h2 style="text-align:center;">GitHub Portfolio</h2>
 
-<div class="grid">
-
-    <div class="card">
-        🖥 <b>Desktop Apps</b>
-        <!-- <p>System Design Implementations, WPF, Scalable UI Projects</p> -->
-    </div>
-
-    <div class="card">
-        <div class="featured">FEATURED</div>
-        📱 <b>Mobile Apps</b>
-        <!-- <p>BolSaathi – Voice Banking for Elders, Android Projects</p> -->
-    </div>
-
-    <div class="card">
-        <div class="featured">FEATURED</div>
-        🤖 <b>AI / ML Projects</b>
-        <!-- <p>ShadowRec Recommender, LLM Note Assistant, ML Pipelines</p> -->
-    </div>
-
-    <div class="card">
-        🌐 <b>Django Projects</b>
-        <!-- <p>REST APIs, Authentication Systems, Backend Services</p> -->
-    </div>
-
+<div class="tabs">
+    <button onclick="showProjects('desktop')">Desktop Apps</button>
+    <button onclick="showProjects('mobile')">Mobile Apps</button>
+    <button onclick="showProjects('ai')">AI / ML Projects</button>
+    <button onclick="showProjects('django')">Django Projects</button>
 </div>
 
-<!-- <div class="about">
-<h3>About Me</h3>
-<p>
-AI Engineer with 2+ years of software engineering experience. Research-focused in recommender systems (GNN + ShadowRec) and passionate about building accessible fintech products like BolSaathi for elders. Strong in backend systems, ML, and scalable application design.
-</p> -->
+<div id="desktop" class="project-section">
+    <ul>
+        <li><a href="#">System Optimizer Tool</a></li>
+        <li><a href="#">WPF Billing Application</a></li>
+    </ul>
+</div>
 
-<h3>Tech Stack</h3>
+<div id="mobile" class="project-section" style="display:none;">
+    <ul>
+        <li><a href="#">BolSaathi – Voice Banking Assistant</a></li>
+        <li><a href="#">Expense Tracker App</a></li>
+    </ul>
+</div>
+
+<div id="ai" class="project-section" style="display:none;">
+    <ul>
+        <li><a href="#">ShadowRec – Diversity-aware Recommender</a></li>
+        <li><a href="#">LLM Note Assistant</a></li>
+        <li><a href="#">ML Pipeline – Store Sales Forecast</a></li>
+    </ul>
+</div>
+
+<div id="django" class="project-section" style="display:none;">
+    <ul>
+        <li><a href="#">Django Authentication System</a></li>
+        <li><a href="#">REST API Backend</a></li>
+    </ul>
+</div>
+
+<h3 style="margin-top:40px;">Tech Stack</h3>
 <div class="tech">
-<span>C++</span><span>C#</span><span>Python</span><span>Django</span><span>FastAPI</span><span>Recommender Systems</span>
-<span>LLMs</span><span>AWS</span><span>Docker</span><span>Android</span><span>WPF</span><span>Git</span>
-</div>
+<span>C++</span><span>C#</span><span>Python</span><span>Django</span><span>FastAPI</span>
+<span>Recommender Systems</span><span>LLMs</span><span>AWS</span>
+<span>Docker</span><span>Android</span><span>WPF</span><span>Git</span>
 </div>
 
 </div>
 
 <footer>
-    <!-- ⭐ GitHub Stats & Visitor Counter can be added here   -->
+⭐ GitHub Project Portfolio — @winnie-224
 </footer>
+
+<script>
+function showProjects(category) {
+    const sections = document.querySelectorAll(".project-section");
+    sections.forEach(section => section.style.display = "none");
+    document.getElementById(category).style.display = "block";
+}
+</script>
 
 </body>
 </html>
